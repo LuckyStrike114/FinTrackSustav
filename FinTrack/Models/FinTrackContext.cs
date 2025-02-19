@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.IO;
+
 
 namespace FinTrackSustav.Models
 {
@@ -10,7 +12,8 @@ namespace FinTrackSustav.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=.\\fintrack.db");
+            optionsBuilder.UseSqlite($"Data Source={Path.Combine(AppContext.BaseDirectory, "fintrack.db")}");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
