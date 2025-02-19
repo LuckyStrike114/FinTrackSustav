@@ -1,0 +1,22 @@
+﻿<Window x:Class="FinTrackSustav.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FinTrackSustav - Glavni Prozor" Height="500" Width="800">
+    <Grid>
+        <!-- Gornji dio s gumbima -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="btnAddGoal" Content="Dodaj cilj" Width="100" Margin="5" Click="BtnAddGoal_Click"/>
+            <Button x:Name="btnAddTransaction" Content="Dodaj transakciju" Width="120" Margin="5" Click="BtnAddTransaction_Click"/>
+        </StackPanel>
+
+        <!-- Donji dio s tabovima -->
+        <TabControl Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1">
+            <TabItem Header="Financijski ciljevi">
+                <DataGrid x:Name="dgGoals" AutoGenerateColumns="True" IsReadOnly="True"/>
+            </TabItem>
+            <TabItem Header="Transakcije">
+                <DataGrid x:Name="dgTransactions" AutoGenerateColumns="True" IsReadOnly="True"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
