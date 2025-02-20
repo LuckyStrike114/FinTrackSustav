@@ -12,7 +12,7 @@ namespace FinTrackSustav
             base.OnStartup(e);
 
             // Pokreni sound effect pri pokretanju
-            PlaySound("C:\\Users\\Karlo\\source\\repos\\LuckyStrike114\\FinTrackSustav\\FinTrack\\startup.wav");
+            PlaySound("startup.wav");
 
             // Inicijalizacija baze
             using (var context = new FinTrackContext())
@@ -24,7 +24,7 @@ namespace FinTrackSustav
         protected override void OnExit(ExitEventArgs e)
         {
             // Pokreni sound effect pri gašenju
-            PlaySound("C:\\Users\\Karlo\\source\\repos\\LuckyStrike114\\FinTrackSustav\\FinTrack\\shutdown.wav");
+            PlaySound("shutdown.wav");
             base.OnExit(e);
         }
 
@@ -32,7 +32,10 @@ namespace FinTrackSustav
         {
             try
             {
-                var player = new SoundPlayer(soundFile);
+                // trazi zvucne datoteke u cijelom direktoriju programa
+                string fullPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, soundFile);
+                var player = new SoundPlayer(fullPath);
+
                 player.Play();
                 System.Threading.Thread.Sleep(1200);
             }

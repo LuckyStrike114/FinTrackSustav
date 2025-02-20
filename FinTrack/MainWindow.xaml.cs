@@ -202,7 +202,7 @@ namespace FinTrackSustav
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Application.Current.Shutdown();
+            
         }
     }
 }
