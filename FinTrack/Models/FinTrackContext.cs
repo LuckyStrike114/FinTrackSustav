@@ -10,7 +10,7 @@ namespace FinTrackSustav.Models
         public DbSet<FinancialGoal> FinancialGoals { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
 
-        public DbSet<UkupniIznos> UkupniIznosi { get; set; }
+        public DbSet<TotalAmount> totalAmounts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

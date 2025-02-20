@@ -52,13 +52,13 @@ namespace FinTrackSustav
                 context.Transactions.Add(newTransaction);
 
                 // Ažuriraj ukupni iznos
-                var ukupniIznos = context.UkupniIznosi.FirstOrDefault(u => u.UserId == _currentUser.Id);
-                if (ukupniIznos == null)
+                var TotalAmount = context.totalAmounts.FirstOrDefault(u => u.UserId == _currentUser.Id);
+                if (TotalAmount == null)
                 {
-                    ukupniIznos = new UkupniIznos { UserId = _currentUser.Id, TotalAmount = 0 };
-                    context.UkupniIznosi.Add(ukupniIznos);
+                    TotalAmount = new TotalAmount { UserId = _currentUser.Id, totalAmount = 0 };
+                    context.totalAmounts.Add(TotalAmount);
                 }
-                ukupniIznos.TotalAmount += newTransaction.Amount;
+                TotalAmount.totalAmount += newTransaction.Amount;
                 context.SaveChanges();
             }
 

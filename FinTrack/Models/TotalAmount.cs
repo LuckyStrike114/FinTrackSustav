@@ -1,8 +1,8 @@
 ﻿using FinTrackSustav.Models;
 
-public class UkupniIznos
+public class TotalAmount
 {
     public int Id { get; set; }
     public int UserId { get; set; }
-    public decimal TotalAmount { get; set; }
+    public decimal totalAmount { get; set; }
 }

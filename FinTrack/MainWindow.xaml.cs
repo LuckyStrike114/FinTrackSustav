@@ -36,7 +36,7 @@ namespace FinTrackSustav
                 dgGoals.ItemsSource = goals;
                 dgTransactions.ItemsSource = transactions;
             }
-            statusBarText.Content = "Podaci učitani";
+            statusBarText.Text = "Podaci učitani";
             LoadFundsData();
         }
 
@@ -44,8 +44,8 @@ namespace FinTrackSustav
         {
             using (var context = new FinTrackContext())
             {
-                var ukupniIznos = context.UkupniIznosi.FirstOrDefault(u => u.UserId == _currentUser.Id);
-                decimal total = ukupniIznos?.TotalAmount ?? 0;
+                var TotalAmount = context.totalAmounts.FirstOrDefault(u => u.UserId == _currentUser.Id);
+                decimal total = TotalAmount?.totalAmount ?? 0;
 
                 decimal allocated = context.FinancialGoals
                     .Where(g => g.UserId == _currentUser.Id && g.Status != "Završen")
@@ -56,7 +56,7 @@ namespace FinTrackSustav
 
                 // Formatiranje iznosa
                 CultureInfo euroCulture = CultureInfo.CreateSpecificCulture("fr-FR");
-                txtUkupniIznos.Text = total.ToString("C", euroCulture);
+                txtTotalAmount.Text = total.ToString("C", euroCulture);
                 txtRaspolozivo.Text = available.ToString("C", euroCulture);
             }
         }
@@ -95,12 +95,12 @@ namespace FinTrackSustav
                 {
                     // Ažuriraj ukupni iznos i status cilja
                     var goal = context.FinancialGoals.Find(selectedGoal.Id);
-                    var ukupniIznos = context.UkupniIznosi.FirstOrDefault(u => u.UserId == _currentUser.Id);
+                    var TotalAmount = context.totalAmounts.FirstOrDefault(u => u.UserId == _currentUser.Id);
 
-                    if (ukupniIznos != null)
+                    if (TotalAmount != null)
                     {
                         // Skini ciljni iznos iz ukupnog iznosa
-                        ukupniIznos.TotalAmount -= goal.TargetAmount;
+                        TotalAmount.totalAmount -= goal.TargetAmount;
                         goal.Status = "Završen";
                         context.SaveChanges();
                     }
@@ -204,5 +204,11 @@ namespace FinTrackSustav
         {
             
         }
+
+        private void dgTransactions_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+
     }
 }

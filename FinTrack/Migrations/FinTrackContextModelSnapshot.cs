@@ -47,6 +47,23 @@ namespace FinTrackSustav.Migrations
                     b.ToTable("FinancialGoals");
                 });
 
+            modelBuilder.Entity("TotalAmount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("totalAmount")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("totalAmounts");
+                });
+
             modelBuilder.Entity("Transaction", b =>
                 {
                     b.Property<int>("Id")
@@ -71,23 +88,6 @@ namespace FinTrackSustav.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Transactions");
-                });
-
-            modelBuilder.Entity("UkupniIznos", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UkupniIznosi");
                 });
 
             modelBuilder.Entity("User", b =>

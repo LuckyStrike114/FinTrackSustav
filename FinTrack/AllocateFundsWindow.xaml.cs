@@ -51,12 +51,12 @@ namespace FinTrackSustav
             using (var context = new FinTrackContext())
             {
                 // Provjeri raspoloživa sredstva
-                var ukupniIznos = context.UkupniIznosi.FirstOrDefault(u => u.UserId == _currentUser.Id);
+                var TotalAmount = context.totalAmounts.FirstOrDefault(u => u.UserId == _currentUser.Id);
                 decimal allocated = context.FinancialGoals
                     .Where(g => g.UserId == _currentUser.Id && g.Status != "Završen")
                     .AsEnumerable()
                     .Sum(g => g.CurrentAmount);
-                decimal available = (ukupniIznos?.TotalAmount ?? 0) - allocated;
+                decimal available = (TotalAmount?.totalAmount ?? 0) - allocated;
 
                 if (amount > available)
                 {

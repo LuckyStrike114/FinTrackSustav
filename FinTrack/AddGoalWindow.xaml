@@ -1,30 +1,55 @@
 ﻿<Window x:Class="FinTrackSustav.AddGoalWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Dodaj novi cilj" Height="250" Width="400" WindowStartupLocation="CenterScreen">
-    <Grid Margin="10">
+        Title="Dodaj novi cilj" 
+        Height="300" 
+        Width="450"
+        Style="{StaticResource {x:Type Window}}"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Segoe UI">
+
+    <!-- Osiguraj da su svi resursi definirani u App.xaml -->
+    <Grid Background="{StaticResource PolarNight1}" Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
 
-        <!-- Unos naziva cilja -->
-        <Label Content="Naziv cilja:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="txtGoalName" Grid.Row="0" Grid.Column="1" Margin="5"/>
+        <!-- Naziv cilja -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+            <TextBlock Text="Naziv cilja" 
+                     Foreground="{StaticResource PolarNight4}"
+                     Margin="0,0,0,5"/>
+            <TextBox x:Name="txtGoalName"
+                   Style="{StaticResource ModernTextBox}"
+                   FontSize="14"/>
+        </StackPanel>
 
-        <!-- Unos ciljanja iznosa -->
-        <Label Content="Ciljni iznos:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="txtTargetAmount" Grid.Row="1" Grid.Column="1" Margin="5"/>
+        <!-- Ciljni iznos -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,25">
+            <TextBlock Text="Ciljni iznos (€)" 
+                     Foreground="{StaticResource PolarNight4}"
+                     Margin="0,0,0,5"/>
+            <TextBox x:Name="txtTargetAmount"
+                   Style="{StaticResource ModernTextBox}"
+                   FontSize="14"/>
+        </StackPanel>
 
-        <!-- Tipka Spremi i Odustani -->
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
-            <Button Content="Spremi" Width="75" Margin="5" Click="BtnSave_Click"/>
-            <Button Content="Odustani" Width="75" Margin="5" Click="BtnCancel_Click"/>
+        <!-- Gumbi -->
+        <StackPanel Grid.Row="2" 
+                   Orientation="Horizontal" 
+                   HorizontalAlignment="Right">
+            <Button Content="SPREMI"
+                  Style="{StaticResource EmeraldButton}"
+                  Click="BtnSave_Click"
+                  Width="120"/>
+
+            <Button Content="ODUSTANI"
+                  Style="{StaticResource CancelButton}"
+                  Click="BtnCancel_Click"
+                  Width="120"
+                  Margin="15,0,0,0"/>
         </StackPanel>
     </Grid>
 </Window>
