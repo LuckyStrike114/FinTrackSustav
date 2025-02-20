@@ -73,6 +73,23 @@ namespace FinTrackSustav.Migrations
                     b.ToTable("Transactions");
                 });
 
+            modelBuilder.Entity("UkupniIznos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UkupniIznosi");
+                });
+
             modelBuilder.Entity("User", b =>
                 {
                     b.Property<int>("Id")

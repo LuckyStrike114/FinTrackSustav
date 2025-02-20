@@ -1,4 +1,6 @@
-﻿using FinTrackSustav.Models; // Provjerite da namespace odgovara
+﻿using FinTrackSustav.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Windows;
 
@@ -13,11 +15,17 @@ namespace FinTrackSustav
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
+            string email = txtEmail.Text;
+            string password = pwdPassword.Password;
+
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Unesite email i lozinku!", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             using (var context = new FinTrackContext())
             {
-                string email = txtEmail.Text;
-                string password = pwdPassword.Password;
-
                 var user = context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
                 if (user != null)
                 {
@@ -30,8 +38,17 @@ namespace FinTrackSustav
                 }
                 else
                 {
-                    MessageBox.Show("Neispravni podaci!");
+                    MessageBox.Show("Neispravni podaci!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+            }
+        }
+
+        private void BtnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            var registerWindow = new RegisterWindow();
+            if (registerWindow.ShowDialog() == true)
+            {
+                MessageBox.Show("Registracija uspješna! Prijavite se s novim podacima.", "Uspjeh", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }

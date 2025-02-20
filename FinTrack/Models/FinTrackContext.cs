@@ -10,6 +10,8 @@ namespace FinTrackSustav.Models
         public DbSet<FinancialGoal> FinancialGoals { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
 
+        public DbSet<UkupniIznos> UkupniIznosi { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite($"Data Source={Path.Combine(AppContext.BaseDirectory, "fintrack.db")}");
