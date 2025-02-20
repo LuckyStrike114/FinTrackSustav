@@ -58,7 +58,7 @@
 1. **Preuzimanje projekta**:
    - Klonirajte repozitorij na svoje računalo:
      ```bash
-     git clone https://github.com/vaš-username/FinTrackSustav.git
+     git clone https://github.com/LuckyStrike114/FinTrackSustav.git
      ```
    - Otvorite rješenje (`FinTrackSustav.sln`) u Visual Studiju.
 
